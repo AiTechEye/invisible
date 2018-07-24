@@ -1,0 +1,1 @@
+Hide nametag while sneaking, or invisible with the invisible privilege
