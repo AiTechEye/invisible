@@ -1,12 +1,12 @@
 minetest.register_alias("i", "invisible:tool")
 
-invisible={time=0,armor=minetest.get_modpath("3d_armor")}
+invisible = { time = 0, armor = minetest.get_modpath("3d_armor")}
 minetest.register_privilege("invisible", {
-	description = "Be invisible",
-	give_to_singleplayer= false,
+	description = "Allows the player to become invisible.",
+	give_to_singleplayer = false,
 })
 
-invisible.toogle=function(user,sneak)
+invisible.toggle=function(user,sneak)
 	local name=user:get_player_name()
 	if minetest.check_player_privs(user:get_player_name(), {invisible=true}) then
 		if not invisible[name] then
@@ -59,7 +59,7 @@ minetest.register_tool("invisible:tool", {
 	groups = {not_in_creative_inventory=1},
 	on_use = function(itemstack, user, pointed_thing)
 		if minetest.check_player_privs(user:get_player_name(), {invisible=true}) then
-				invisible.toogle(user,true)
+				invisible.toggle(user,true)
 		else
 			itemstack:replace(nil)
 		end
@@ -75,7 +75,7 @@ minetest.register_globalstep(function(dtime)
 		local name=player:get_player_name()
 		local sneak=player:get_player_control().sneak
 		if (sneak and not invisible[name]) or (sneak==false and invisible[name] and not invisible[name].tool) then
-			invisible.toogle(player)
+			invisible.toggle(player)
 		end
 	end
 end)
