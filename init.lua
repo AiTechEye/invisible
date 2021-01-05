@@ -13,14 +13,13 @@ invisible.toggle=function(user,sneak)
 			user:set_nametag_attributes({color = {a = 0, r = 255, g = 255, b = 255}})
 			invisible[name]={}
 			invisible[name].tool=sneak
-			invisible[name].collisionbox=user:get_properties().collisionbox
 			invisible[name].visual_size=user:get_properties().visual_size
 			invisible[name].textures=user:get_properties().textures
 			user:set_properties({
 				visual = "mesh",
 				textures={"invisible_skin.png"},
 				visual_size = {x=0, y=0},
-				collisionbox = {0,0,0, 0,0,0},
+				pointable=false,
 			})
 			minetest.chat_send_player(name, "invisible on")			
 		else
@@ -29,7 +28,7 @@ invisible.toggle=function(user,sneak)
 				visual = "mesh",
 				textures=invisible[name].textures,
 				visual_size = invisible[name].visual_size,
-				collisionbox=invisible[name].collisionbox
+				pointable=true,
 			})
 			invisible[name]=nil
 
@@ -37,7 +36,6 @@ invisible.toggle=function(user,sneak)
 				armor:set_player_armor(user)
 				armor:update_inventory(user)
 			end
-
 
 			minetest.chat_send_player(name, "invisible off")
 		end
