@@ -1,6 +1,6 @@
 Licenses: code: LGPL-2.1, media: CC BY-SA-4.0
 
-Version: 3
+Version: 4
 
 Hides players nametag when they are sneaking, or invisible if you have the invisible privilege.
 
